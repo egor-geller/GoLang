@@ -17,5 +17,5 @@ func max(x []string) string {
 
 func main() {
 	a := []string{"one", "two", "three", "four"}
-	fmt.Println(max(a))
+	fmt.Println(max(a[1:4))
 }
