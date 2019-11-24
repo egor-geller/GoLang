@@ -1,14 +1,21 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func max(x []string) string {
-	var l, s, p int
-	l = len(x)
-	s = len(x[0])
-	for i := 1; i < l; i++ {
-		if s < len(x[i]) {
-			s = len(x[i])
+	var stringLen, maxCharLen, p int
+	if len(x) <= 0 {
+		fmt.Print("Slice has no elements")
+		os.Exit(1)
+	}
+	stringLen = len(x)
+	maxCharLen = len(x[0])
+	for i := 1; i < stringLen; i++ {
+		if maxCharLen < len(x[i]) {
+			maxCharLen = len(x[i])
 			p = i
 		}
 	}
@@ -17,5 +24,6 @@ func max(x []string) string {
 
 func main() {
 	a := []string{"one", "two", "three", "four"}
-	fmt.Println(max(a[1:4))
+	//a := []string{}
+	fmt.Println(max(a))
 }
