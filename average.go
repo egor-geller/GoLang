@@ -9,7 +9,7 @@ func average(x []int) float64 {
 	var sum, N int
 	sum = 0
 	N = len(x)
-	if N == 0 {
+	if N <= 0 {
 		fmt.Print("Slice has no elements")
 		os.Exit(1)
 	}
