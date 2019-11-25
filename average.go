@@ -5,18 +5,16 @@ import (
 	"os"
 )
 
-func average(x []int) float64 {
+func average(x []int) (float64, error) {
 	var sum, N int
-	sum = 0
 	N = len(x)
 	if N <= 0 {
-		fmt.Print("Slice has no elements")
-		os.Exit(1)
+		return 0, fmt.Errorf("slice has no elements")
 	}
 	for i := 0; i < N; i++ {
 		sum += x[i]
 	}
-	return float64(sum) / float64(N)
+	return float64(sum) / float64(N), nil
 }
 
 func main() {
