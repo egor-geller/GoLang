@@ -7,16 +7,17 @@ import (
 )
 
 func max(x []string) string {
-	var stringLen, p int
+	var sliceLen, p int
 	if len(x) <= 0 {
 		fmt.Print("Slice has no elements")
 		os.Exit(1)
 	}
-	stringLen = len(x)
+	sliceLen = len(x)
 	maxCharLen := utf8.RuneCountInString(x[0])
-	for i := 1; i < stringLen; i++ {
-		if maxCharLen < len(x[i]) {
-			maxCharLen = len(x[i])
+	for i := 1; i < sliceLen; i++ {
+
+		if maxCharLen < utf8.RuneCountInString(x[i]) {
+			maxCharLen = utf8.RuneCountInString(x[i])
 			p = i
 		}
 	}
