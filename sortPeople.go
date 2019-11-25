@@ -13,24 +13,18 @@ type Person struct {
 	birthDay  time.Time
 }
 
-func (p Person) String() string {
+/*func (p Person) String() string {
 	return fmt.Sprintf("{%s %s %s}", p.firstName, p.lastName, p.birthDay.Format("2006-01-02"))
-}
+}*/
 
 type People []Person
 
-func (p People) Len() int {
-	if len(p) <= 0 {
-		fmt.Println("There are no people")
-		os.Exit(1)
-	}
-	return len(p)
-}
+func (p People) Len() int { return len(p) }
 func (p People) Less(i, j int) bool {
-	if p[i].firstName == p[j].firstName {
-		return p[i].String() > p[j].String()
+	if p[i].birthDay == p[j].birthDay {
+		return p[i].firstName < p[j].firstName
 	}
-	return p[i].String() < p[j].String()
+	return p[j].birthDay.Before(p[i].birthDay)
 }
 func (p People) Swap(i, j int) { p[i], p[j] = p[j], p[i] }
 
