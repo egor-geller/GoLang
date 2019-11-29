@@ -29,6 +29,7 @@ func dejson() error {
 	if err := json.Unmarshal(in, &out); err != nil {
 		panic(err)
 	}
+	fmt.Printf("%+v", out)
 	return nil
 }
 
