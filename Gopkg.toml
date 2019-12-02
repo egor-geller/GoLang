@@ -32,7 +32,3 @@
 [[constraint]]
   name = "github.com/kyokomi/emoji"
   version = "2.1.0"
-
-[[constraint]]
-  name = "github.com/pkg/errors"
-  version = "0.8.1"
