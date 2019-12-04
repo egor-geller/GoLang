@@ -5,17 +5,24 @@ import (
 )
 
 func Test_First(t *testing.T) {
-	numStr := "1234"
+	numStrPos := "1234"
+	numStrNeg := "-1234"
 	numErr := "rtt"
-	num := 1234
+	numPos := 1234
+	numNeg := -1234
 
-	str1, err1 := myStringToInt(numStr)
-	if str1 != num || err1 != nil {
+	strPos, errPos := myStringToInt(numStrPos)
+	if strPos != numPos || errPos != nil {
+		t.Errorf("Error")
+	}
+
+	strNeg, errNeg := myStringToInt(numStrNeg)
+	if strNeg != numNeg || errNeg != nil {
 		t.Errorf("Error")
 	}
 
 	str2, err2 := myStringToInt(numErr)
-	if str2 == num || err2 == nil {
+	if str2 == numPos || err2 == nil {
 		t.Errorf("Error")
 	}
 }
