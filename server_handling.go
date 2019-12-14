@@ -1,19 +1,30 @@
 package main
 
 import (
-	"fmt"
+	"encoding/json"
 	"log"
 	"net/http"
 )
 
+type Profile struct {
+	Name    string   `json:"host"`
+	Headers []string `json:"headers"`
+	Agent   string   `json:"user-agent"`
+	Request string   `json:"request-uri"`
+	Accept  string   `json:"accept"`
+}
+
 func handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "%s %s %s \n", r.Method, r.URL, r.Proto)
-	fmt.Fprintf(w, "Host = %q\n", r.Host)
-	fmt.Fprintf(w, "User-Agent= %q\n", r.UserAgent())
-	fmt.Fprintf(w, "Request-Uri = %q\n", r.RequestURI)
-	fmt.Fprintln(w, "Headers:")
-	fmt.Fprintf(w, "Accept = %q\n", r.Header.Get("Accept"))
-	fmt.Fprintf(w, "User-Agent = %q\n", r.UserAgent())
+	profile := Profile{r.Host, []string{r.Header.Get("Accept"), r.UserAgent()}, r.UserAgent(), r.RequestURI, r.Header.Get("Accept")}
+
+	js, err := json.Marshal(profile)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(js)
 }
 
 func main() {
