@@ -11,5 +11,5 @@ func myStringToInt(s string) (int, error) {
 
 func myStringToInt2(s string) (int, error) {
 	var str int
-	return return fmt.Sscanf(s, "%d", &str)
+	return fmt.Sscanf(s, "%d", &str)
 }
