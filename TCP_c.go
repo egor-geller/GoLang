@@ -13,14 +13,20 @@ func main() {
 	for {
 		reader := bufio.NewReader(os.Stdin)
 		fmt.Print("Text to send: ")
-		text, _ := reader.ReadString('\n')
+		text, err := reader.ReadString('\n')
+		if err != nil {
+			fmt.Errorf("Reading error")
+		}
 		if strings.TrimSpace(text) == "exit" {
 			fmt.Println("TCP client exiting...")
 			return
 		} else {
 			fmt.Fprintf(conn, text+"\n")
 		}
-		message, _ := bufio.NewReader(conn).ReadString('\n')
+		message, err := bufio.NewReader(conn).ReadString('\n')
+		if err != nil {
+			fmt.Errorf("Connection problem")
+		}
 		fmt.Print("Message from server: " + message)
 	}
 }
